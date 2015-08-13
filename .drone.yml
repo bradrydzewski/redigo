@@ -2,7 +2,7 @@ clone:
   path: github.com/garyburd/redigo
 
 build:
-  image: golang:1.3.3
+  image: golang:$$go_version
   environment:
     - GOPATH=/drone
   commands:
@@ -13,7 +13,16 @@ build:
 
 compose:
   redis:
-    image: redis:2.8
+    image: redis:$$redis_version
+
+matrix:
+  go_version:
+    - 1.4.2
+    - 1.3.2
+  redis_version:
+    - 2.8
+    - latest
+
 
 
 
